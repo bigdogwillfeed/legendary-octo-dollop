@@ -8,6 +8,7 @@ async function run() {
     repo: context.repo.repo,
     ref: context.ref.substr(5), // remove `refs/`
   });
+  console.log(JSON.stringify(head, undefined, 2));
   setOutput('isHead', head.object.sha === context.sha);
 }
 
