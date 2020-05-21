@@ -516,17 +516,14 @@ __webpack_require__.r(__webpack_exports__);
 async function run() {
   const octokit = new _actions_github__WEBPACK_IMPORTED_MODULE_1__.GitHub(Object(_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput)('token'));
   const head = await octokit.git.getRef({
-    ..._actions_github__WEBPACK_IMPORTED_MODULE_1__.context.repo,
-    ref: _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.ref,
+    owner: _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.repo.owner,
+    repo: _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.repo.repo,
+    ref: _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.ref.substr(5), // remove `refs/`
   });
   Object(_actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput)('isHead', head.object.sha === _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.sha);
 }
 
-try {
-  run()
-} catch (error) {
-  Object(_actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed)(error.message);
-}
+run().catch(error => Object(_actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed)(error.message));
 
 /***/ }),
 
