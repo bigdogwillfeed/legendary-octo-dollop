@@ -519,8 +519,7 @@ async function run() {
     owner: _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.repo.owner,
     repo: _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.repo.repo,
     ref: _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.ref.substr(5), // remove `refs/`
-  });
-  console.log(JSON.stringify(head, undefined, 2));
+  }).data;
   Object(_actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput)('isHead', head.object.sha === _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.sha);
 }
 

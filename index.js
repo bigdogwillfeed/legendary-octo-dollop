@@ -7,8 +7,7 @@ async function run() {
     owner: context.repo.owner,
     repo: context.repo.repo,
     ref: context.ref.substr(5), // remove `refs/`
-  });
-  console.log(JSON.stringify(head, undefined, 2));
+  }).data;
   setOutput('isHead', head.object.sha === context.sha);
 }
 
