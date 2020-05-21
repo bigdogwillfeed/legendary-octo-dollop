@@ -1,6 +1,6 @@
 {
   "name": "legendary-octo-dollop",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "Playing with github actions",
   "main": "dist/index.js",
   "scripts": {

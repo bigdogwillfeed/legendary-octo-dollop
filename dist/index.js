@@ -513,15 +513,17 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+async function run() {
+  const octokit = new _actions_github__WEBPACK_IMPORTED_MODULE_1__.GitHub(Object(_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput)('token'));
+  const head = await octokit.git.getRef({
+    ..._actions_github__WEBPACK_IMPORTED_MODULE_1__.context.repo,
+    ref: _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.ref,
+  });
+  Object(_actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput)('isHead', head.object.sha === _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.sha);
+}
+
 try {
-  // `who-to-greet` input defined in action metadata file
-  const nameToGreet = Object(_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput)('who-to-greet');
-  console.log(`Hello ${nameToGreet}!`);
-  const time = (new Date()).toTimeString();
-  Object(_actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput)("time", time);
-  // Get the JSON webhook payload for the event that triggered the workflow
-  const payload = JSON.stringify(_actions_github__WEBPACK_IMPORTED_MODULE_1__.context.payload, undefined, 2)
-  console.log(`The event payload: ${payload}`);
+  run()
 } catch (error) {
   Object(_actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed)(error.message);
 }
