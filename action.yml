@@ -1,13 +1,12 @@
-name: 'Hello World'
-description: 'Greet someone and record the time'
+name: 'Is Head'
+description: 'Checks to see if the current commit is the HEAD of the current branch'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  token:
+    description: 'pass secrets.GITHUB_TOKEN'
     required: true
-    default: 'World'
 outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+  isHead:
+    description: 'true or false'
 runs:
   using: 'node12'
   main: 'dist/index.js'

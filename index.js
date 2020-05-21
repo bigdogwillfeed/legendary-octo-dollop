@@ -1,15 +1,17 @@
 import { getInput, setOutput, setFailed } from '@actions/core';
-import { context } from '@actions/github';
+import {context, GitHub} from '@actions/github';
+
+async function run() {
+  const octokit = new GitHub(getInput('token'));
+  const head = await octokit.git.getRef({
+    ...context.repo,
+    ref: context.ref,
+  });
+  setOutput('isHead', head.object.sha === context.sha);
+}
 
 try {
-  // `who-to-greet` input defined in action metadata file
-  const nameToGreet = getInput('who-to-greet');
-  console.log(`Hello ${nameToGreet}!`);
-  const time = (new Date()).toTimeString();
-  setOutput("time", time);
-  // Get the JSON webhook payload for the event that triggered the workflow
-  const payload = JSON.stringify(context.payload, undefined, 2)
-  console.log(`The event payload: ${payload}`);
+  run()
 } catch (error) {
   setFailed(error.message);
 }
