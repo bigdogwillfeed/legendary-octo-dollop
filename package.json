@@ -1,0 +1,28 @@
+{
+  "name": "legendary-octo-dollop",
+  "version": "0.0.0",
+  "description": "Playing with github actions",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "preversion": "npx ncc build index.js && git add -f dist/index.js && ! git diff-index --quiet HEAD --"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bigdogwillfeed/legendary-octo-dollop.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bigdogwillfeed/legendary-octo-dollop/issues"
+  },
+  "homepage": "https://github.com/bigdogwillfeed/legendary-octo-dollop#readme",
+  "dependencies": {
+    "@actions/core": "^1.2.4",
+    "@actions/github": "^2.2.0"
+  },
+  "devDependencies": {
+    "@zeit/ncc": "^0.22.2"
+  }
+}
